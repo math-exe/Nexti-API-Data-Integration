@@ -53,13 +53,11 @@ def map_clocking_fields(clocking):
     return mapped_clocking
 
 def process_clockings_response(response):
-    # Processa a resposta da API e formata as datas
-    # Extrai as informações relevantes da resposta
     formatted_data = []
 
     for entry in response:
-        clockings = entry.get('clockings', [])  # Obtém a lista de clockings para esta entrada
-        informations = entry.get('information', [])  # Obtém a lista de informações para esta entrada
+        clockings = entry.get('clockings', [])
+        informations = entry.get('information', [])
 
         for clocking in clockings:
             formatted_clocking = map_clocking_fields(clocking)
@@ -81,7 +79,7 @@ def extract_external_ids():
         print(f'O arquivo CSV {csv_file_path} não foi encontrado.')
         return []
 
-# Função para formatar a data e hora com subtração de 3 horas ()
+# Função para formatar a data e hora com subtração de 3 horas (GMT-3, mas pode modificar como achar melhor)
 def format_datetime_with_subtraction(datetime_str):
     if datetime_str:
         datetime_obj = datetime.strptime(datetime_str, '%d%m%Y%H%M%S')
