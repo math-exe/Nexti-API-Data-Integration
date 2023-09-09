@@ -31,3 +31,17 @@ Para executar o processo de integração de dados, simplesmente execute o script
 
 ```bash
 python main.py
+```
+O script irá gerar registros de log no arquivo `log.txt` e inserir os dados na tabela `NEXTI_CLOCKINGS` do banco de dados SQL Server configurado.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar problemas ou solicitações de pull.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para obter detalhes.
+
+## Agradecimentos
+
+Agradecemos à Nexti por fornecer acesso à API e inspirar este projeto de integração de dados.
