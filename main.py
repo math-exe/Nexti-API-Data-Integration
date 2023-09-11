@@ -1,5 +1,3 @@
-# main.py
-
 import database
 import api_requests
 import data_processing
