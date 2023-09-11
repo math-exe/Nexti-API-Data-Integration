@@ -9,7 +9,7 @@ from datetime import datetime
 from requests.exceptions import RequestException
 
 def get_csv_file_path():
-    output_path = r'C:\Users\matheus.bressan\Documents\Projetos\API\NEXTI\Marcações Válidas 2.0\output'
+    output_path = r'\output'
     csv_file_path = os.path.join(output_path, 'persons.csv')
     return csv_file_path
 
