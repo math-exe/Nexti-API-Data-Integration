@@ -9,7 +9,7 @@ from datetime import datetime
 from requests.exceptions import RequestException
 
 def get_csv_file_path():
-    output_path = r'\output'
+    output_path = r'C:\Users\matheus.bressan\Documents\Projetos\API\NEXTI\Marcações Válidas 2.0\output'
     csv_file_path = os.path.join(output_path, 'persons.csv')
     return csv_file_path
 
@@ -17,11 +17,11 @@ def get_csv_file_path():
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def get_access_token():
-    # Carrega as configurações do arquivo config.json
+    # Carregue as configurações do arquivo config.json
     with open('config.json') as config_file:
         config = json.load(config_file)
 
-    # Verifica se já existe um token de acesso armazenado e sua data de expiração
+    # Verifique se já existe um token de acesso armazenado e sua data de expiração
     access_token = config.get('access_token')
     token_expiration = config.get('token_expiration')
 
@@ -79,7 +79,7 @@ def get_employee_table(access_token):
         "size": 150000
     }
 
-    output_path = 'output'
+    output_path = r'C:\Users\matheus.bressan\Documents\Projetos\API\NEXTI\Marcações Válidas 2.0\output'
     csv_file_path = os.path.join(output_path, 'persons.csv')
 
     if os.path.exists(csv_file_path):
@@ -106,13 +106,13 @@ def get_employee_table(access_token):
         print('Erro na solicitação:', response.status_code)
         return None
 
-def get_clockings(acess_token, externalId, period, max_retries=3, backoff_factor=2):
+def get_clockings(access_token, externalId, period, max_retries=3, backoff_factor=2):
     retry = 0
 
     while retry < max_retries:
         try:
             headers = {
-                "Authorization": f"Bearer {acess_token}"
+                "Authorization": f"Bearer {access_token}"
             }
 
             url = f'https://api.nexti.com/clockings/person/externalid/{externalId}/period/{period}'
@@ -125,3 +125,15 @@ def get_clockings(acess_token, externalId, period, max_retries=3, backoff_factor
             retry += 1
             sleep(backoff_factor * retry)  # Backoff entre as tentativas
     return None
+
+def is_token_near_expiry(access_token, threshold_minutes=5):
+    with open('config.json') as config_file:
+        config = json.load(config_file)
+
+    token_expiration = config.get('token_expiration')
+
+    if token_expiration and time.time() < token_expiration - (threshold_minutes * 60):
+        # O token ainda é válido por mais de 'threshold_minutes' minutos
+        return False
+
+    return True
