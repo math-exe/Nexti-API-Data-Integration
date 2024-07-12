@@ -3,7 +3,7 @@
     "client_secret": "your_client_secret",
     "grant_type": "client_credentials",
     "Content-Type": "application/json",
-    "Authorization": "Basic b3JiZW5rOjRlOWZhNTFiMTAwNDlkMzM0ZDljNDYyZWFjMjY3MDVkZGJmMTc3YjU=",
+    "Authorization": "Basic YourCodeHere",
     "user_db": "your_user_db",
     "password_db": "your_password_db",
     "database": "your_database",
